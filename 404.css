@@ -1,0 +1,137 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    overflow: hidden;
+}
+
+/* FLOATING EFFECT */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: float 6s infinite alternate ease-in-out;
+}
+
+body::before {
+    background: #4f46e5;
+    top: 10%;
+    left: 10%;
+}
+
+body::after {
+    background: #06b6d4;
+    bottom: 10%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    from { transform: translateY(0px) scale(1); }
+    to { transform: translateY(-40px) scale(1.2); }
+}
+
+/* CARD */
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+.card {
+    width: 400px;
+    padding: 40px;
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    animation: pop 0.8s ease;
+}
+
+/* POP ANIMATION */
+@keyframes pop {
+    from {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ICON */
+.icon {
+    font-size: 50px;
+    color: #facc15;
+    margin-bottom: 15px;
+    animation: shake 1.5s infinite;
+}
+
+@keyframes shake {
+    0%,100% { transform: rotate(0); }
+    25% { transform: rotate(10deg); }
+    50% { transform: rotate(-10deg); }
+}
+
+/* TEXT */
+h1 {
+    font-size: 80px;
+    color: #ffffff;
+}
+
+h2 {
+    color: #cbd5e1;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(99,102,241,0.6);
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 500px) {
+    .card {
+        width: 90%;
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+}
