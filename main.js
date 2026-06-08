@@ -163,3 +163,233 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+window.addEventListener("scroll", () => {
+    document.querySelectorAll(".reveal").forEach((el) => {
+        let top = el.getBoundingClientRect().top;
+
+        if (top < window.innerHeight - 120) {
+            el.classList.add("active");
+        }
+    });
+});
+
+/* =========================
+   OPEN / CLOSE MODAL
+========================= */
+
+function openAuth(){
+  document.getElementById("loginModal").classList.add("show");
+}
+
+function closeAuth(){
+  document.getElementById("loginModal").classList.remove("show");
+}
+
+/* =========================
+   SHOW SECTIONS
+========================= */
+
+function showLogin(){
+  document.getElementById("loginBox").style.display = "block";
+  document.getElementById("signupBox").style.display = "none";
+  document.getElementById("forgotBox").style.display = "none";
+}
+
+function showSignup(){
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("signupBox").style.display = "block";
+  document.getElementById("forgotBox").style.display = "none";
+}
+
+function showForgot(){
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("signupBox").style.display = "none";
+  document.getElementById("forgotBox").style.display = "block";
+}
+
+/* =========================
+   SIGNUP (SAVE USER)
+========================= */
+
+function signupUser(){
+
+  let name = document.getElementById("signupName").value;
+  let email = document.getElementById("signupEmail").value;
+  let password = document.getElementById("signupPassword").value;
+  let role = document.getElementById("signupRole").value;
+
+  let user = {
+    name: name,
+    email: email,
+    password: password,
+    role: role
+  };
+
+  localStorage.setItem(email, JSON.stringify(user));
+
+  alert("Account Created Successfully!");
+
+  showLogin();
+}
+
+/* =========================
+   LOGIN (NO VALIDATION)
+========================= */
+
+function loginUser(){
+
+  let email = document.getElementById("loginEmail").value;
+  let password = document.getElementById("loginPassword").value;
+  let role = document.getElementById("loginRole").value;
+
+  // ❌ NO CHECK (everyone allowed)
+  let user = {
+    email: email,
+    password: password,
+    role: role,
+    loginTime: new Date()
+  };
+
+  localStorage.setItem("currentUser", JSON.stringify(user));
+
+
+
+  closeAuth();
+
+  // 🔥 DASHBOARD REDIRECT
+  if(role === "student"){
+    window.location.href = "student-dashboard.html";
+  } else {
+    window.location.href = "admin-dashboard.html";
+  }
+}
+
+/* =========================
+   FORGOT PASSWORD
+========================= */
+
+function forgotPassword(){
+
+  let email = document.getElementById("forgotEmail").value;
+
+  let user = JSON.parse(localStorage.getItem(email));
+
+  if(user){
+    alert("Reset link sent to " + email + " (demo only)");
+  } else {
+    alert("User not found");
+  }
+}
+
+/* =========================
+   AUTO OPEN / INIT
+========================= */
+
+window.onload = function(){
+  showLogin();
+};
+
+let user = JSON.parse(localStorage.getItem("currentUser"));
+
+window.onload = function(){
+
+    if(user){
+        document.getElementById("userName").innerText = user.name;
+        document.getElementById("userEmail").innerText = user.email;
+        document.getElementById("welcome").innerText = "Welcome " + user.name + " 👨‍🎓";
+    }
+
+    showSection("home");
+};
+
+function showSection(id){
+
+    let sections = document.querySelectorAll(".section");
+
+    sections.forEach(s => {
+        s.classList.add("hidden");
+    });
+
+    document.getElementById(id).classList.remove("hidden");
+
+    document.querySelectorAll(".sidebar a").forEach(a=>{
+        a.classList.remove("active");
+    });
+
+    if(event){
+        event.target.classList.add("active");
+    }
+}
+
+function logout(){
+    localStorage.removeItem("currentUser");
+    window.location.href = "index.html";
+}
+
+function joinClass(){
+    window.open("https://meet.google.com", "_blank");
+}
+
+function goDashboard(){
+    window.location.href = "student-dashboard.html";
+}
+
+function toggleMenu(){
+    document.querySelector(".nav-right").classList.toggle("active");
+}
+
+// ================= SHOW SECTION =================
+function showSection(id, event){
+
+    // hide all sections
+    document.querySelectorAll(".section").forEach(sec => {
+        sec.classList.add("hidden");
+    });
+
+    // show selected section
+    let target = document.getElementById(id);
+    if(target){
+        target.classList.remove("hidden");
+    }
+
+    // remove active class
+    document.querySelectorAll(".sidebar a").forEach(a => {
+        a.classList.remove("active");
+    });
+
+    // add active class to clicked menu
+    if(event && event.target){
+        event.target.classList.add("active");
+    }
+}
+
+// ================= DASHBOARD LOGO =================
+function goDashboard(){
+    showSection("home");
+}
+
+// ================= DEFAULT LOAD =================
+window.onload = function(){
+    showSection("home");
+};
+
+function toggleMenu(){
+    document.querySelector(".sidebar").classList.toggle("active");
+    document.querySelector(".overlay").classList.toggle("active");
+}
+
+// close when click overlay
+function closeMenu(){
+    document.querySelector(".sidebar").classList.remove("active");
+    document.querySelector(".overlay").classList.remove("active");
+}
+
+// auto close on menu click (mobile UX)
+document.querySelectorAll(".sidebar a").forEach(link=>{
+    link.addEventListener("click", ()=>{
+        if(window.innerWidth <= 768){
+            closeMenu();
+        }
+    });
+});

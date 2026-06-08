@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduNova Academy</title>
+    <title> Education</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -27,7 +27,9 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
 
-            <button class="login-btn">Login</button>
+             <!-- LOGIN BUTTON (FIXED) -->
+        <a href="#" class="login-btn" onclick="openAuth()">Login</a>
+                    
 
             <div class="menu-btn">
                 <i class="fa-solid fa-bars"></i>
@@ -37,7 +39,8 @@
 
     <!-- HERO -->
     <section class="hero" id="home">
-
+             <div class="hero-content reveal"></div>
+             <div class="hero-image reveal"></div>
         <div class="hero-content">
 
             <span class="tag">#1 Modern Learning Platform</span>
@@ -68,6 +71,8 @@
     </section>
 
     <!-- FEATURES -->
+
+    
 
     <section class="features" id="features">
 
@@ -138,6 +143,7 @@
     </section>
 
     <!-- COURSES -->
+     <div class="course-card reveal"></div>
 
     <section class="courses" id="courses">
 
@@ -178,6 +184,9 @@
 
     <!-- ABOUT -->
 
+    <div class="about-content reveal"></div>
+    <div class="about-image reveal"></div>
+
     <section class="about" id="about">
 
         <div class="about-content">
@@ -197,12 +206,14 @@
         </div>
 
         <div class="about-image">
-            <img src="./assesst/homepage1.webp" alt="About Us">
+            <img src="./assesst/homepage2.webp" alt="About Us">
         </div>
 
     </section>
 
     <!-- TESTIMONIAL -->
+
+  
 
     <section class="testimonial">
 
@@ -236,6 +247,8 @@
     </section>
 
     <!-- CONTACT -->
+
+    <form class="reveal"></form>
 
     <section class="contact" id="contact">
 
@@ -378,8 +391,68 @@
     </div>
 
 </footer>
+<!-- LOGIN MODAL -->
+<div class="auth-modal" id="loginModal">
 
-    <script src="main.js"></script>
+  <div class="auth-box">
 
+    <span class="close" onclick="closeAuth()">&times;</span>
+
+    <h2>Login</h2>
+
+    <!-- LOGIN -->
+    <div id="loginBox">
+
+      <select id="loginRole">
+        <option value="student">Student</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <input type="email" id="loginEmail" placeholder="Email">
+      <input type="password" id="loginPassword" placeholder="Password">
+
+      <button onclick="loginUser()">Login</button>
+
+      <p onclick="showSignup()">Create Account</p>
+      <p onclick="showForgot()">Forgot Password?</p>
+
+    </div>
+
+    <!-- SIGNUP -->
+    <div id="signupBox" style="display:none;">
+
+      <input type="text" id="signupName" placeholder="Full Name">
+      <input type="email" id="signupEmail" placeholder="Email">
+      <input type="password" id="signupPassword" placeholder="Password">
+
+      <select id="signupRole">
+        <option value="student">Student</option>
+        <option value="admin">Admin</option>
+      </select>
+
+      <button onclick="signupUser()">Sign Up</button>
+
+      <p onclick="showLogin()">Back to Login</p>
+
+    </div>
+
+    <!-- FORGOT -->
+    <div id="forgotBox" style="display:none;">
+
+      <input type="email" id="forgotEmail" placeholder="Enter Email">
+
+      <button onclick="forgotPassword()">Reset Password</button>
+
+      <p onclick="showLogin()">Back to Login</p>
+
+    </div>
+
+  </div>
+
+</div>
+  <script src="main.js"></script>
 </body>
+
+
+</div>
 </html>

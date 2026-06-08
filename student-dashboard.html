@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard</title>
+
+<link rel="stylesheet" href="student.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+  <nav class="navbar">
+
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+    </div>
+
+    <!-- LOGO (GO TO DASHBOARD) -->
+    <img src="./assesst/IMG_7017.webp" alt="Logo" onclick="goDashboard()">
+
+    <!-- RIGHT SIDE -->
+    <div class="nav-right">
+
+        <!-- BACK TO HOME -->
+        <a href="index.html" class="home-btn"> Home</a>
+
+        <!-- PROFILE -->
+        <div class="profile-box">
+            <img src="https://img.icons8.com/color/48/user-male-circle--v1.png">
+            <span>Student</span>
+        </div>
+
+    </div>
+
+    
+
+</nav>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <h2> Student Panel</h2>
+
+    <a onclick="showSection('home')" class="active"><i class="fa fa-home"></i> Dashboard</a>
+    <a onclick="showSection('courses')"><i class="fa fa-book"></i> My Courses</a>
+    <a onclick="showSection('live')"><i class="fa fa-video"></i> Live Class</a>
+    <a onclick="showSection('assignments')"><i class="fa fa-tasks"></i> Assignments</a>
+    <a onclick="showSection('results')"><i class="fa fa-chart-line"></i> Results</a>
+    <a onclick="showSection('profile')"><i class="fa fa-user"></i> Profile</a>
+    <a onclick="logout()"><i class="fa fa-sign-out"></i> Logout</a>
+
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <h1 id="welcome">Welcome Student </h1>
+    <p>Learn, Practice & Grow </p>
+
+    <!-- HOME -->
+    <div id="home" class="section">
+
+        <div class="cards">
+
+            <div class="card">
+                <i class="fa fa-book"></i>
+                <h3>My Courses</h3>
+                <p>3 Active Courses</p>
+            </div>
+
+            <div class="card">
+                <i class="fa fa-video"></i>
+                <h3>Live Class</h3>
+                <p>Today 6 PM</p>
+            </div>
+
+            <div class="card">
+                <i class="fa fa-tasks"></i>
+                <h3>Assignments</h3>
+                <p>2 Pending</p>
+            </div>
+
+            <div class="card">
+                <i class="fa fa-chart-line"></i>
+                <h3>Results</h3>
+                <p>88% Avg</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- COURSES -->
+    <div id="courses" class="section hidden">
+
+<h2> My Courses</h2>
+
+<div class="grid">
+
+<div class="box">
+<img src="./assesst/userweb.webp">
+<h3>Web Development</h3>
+<p>HTML, CSS, JavaScript, React</p>
+
+<div class="progress">
+<div class="progress-fill" style="width:80%"></div>
+</div>
+
+<p>80% Completed</p>
+<button>Continue Learning</button>
+</div>
+
+<div class="box">
+<img src="./assesst/userpython.webp">
+<h3>Python Programming</h3>
+<p>Beginner to Advanced</p>
+
+<div class="progress">
+<div class="progress-fill" style="width:65%"></div>
+</div>
+
+<p>65% Completed</p>
+<button>Continue Learning</button>
+</div>
+
+<div class="box">
+<img src="./assesst/userai.webp">
+<h3>Artificial Intelligence</h3>
+<p>Machine Learning Basics</p>
+
+<div class="progress">
+<div class="progress-fill" style="width:45%"></div>
+</div>
+
+<p>45% Completed</p>
+<button>Continue Learning</button>
+</div>
+
+</div>
+</div>
+
+    <!-- LIVE CLASS -->
+    <div id="live" class="section hidden">
+
+<h2> Live Classes</h2>
+
+<div class="live-card">
+
+<img src="./assesst/onlineclss.webp">
+
+<h3>Frontend Development Bootcamp</h3>
+
+<p> Instructor : John David</p>
+<p> Date : Today</p>
+<p> Time : 6:00 PM</p>
+
+<button onclick="joinClass()">Join Live Class</button>
+
+</div>
+
+</div>
+
+    <!-- ASSIGNMENTS -->
+    <div id="assignments" class="section hidden">
+
+<h2> Assignments</h2>
+
+<div class="assignment-card">
+
+<img src="./assesst/Assign1.webp">
+
+<div>
+<h3>HTML Portfolio Website</h3>
+<p>Due Date : 15 June 2026</p>
+<span class="pending">Pending</span>
+</div>
+
+</div>
+
+<div class="assignment-card">
+
+<img src="./assesst/Assign2.webp">
+
+<div>
+<h3>CSS Landing Page</h3>
+<p>Submitted Successfully</p>
+<span class="completed">Completed</span>
+</div>
+
+</div>
+
+</div>
+    <!-- RESULTS -->
+    <div id="results" class="section hidden">
+
+<h2> Academic Results</h2>
+
+<div class="result-card">
+<h3>Web Development</h3>
+
+<div class="progress">
+<div class="progress-fill" style="width:85%"></div>
+</div>
+
+<p>85%</p>
+</div>
+
+<div class="result-card">
+<h3>Python</h3>
+
+<div class="progress">
+<div class="progress-fill" style="width:90%"></div>
+</div>
+
+<p>90%</p>
+</div>
+
+<div class="result-card">
+<h3>Artificial Intelligence</h3>
+
+<div class="progress">
+<div class="progress-fill" style="width:80%"></div>
+</div>
+
+<p>80%</p>
+</div>
+
+</div>
+
+    <!-- PROFILE -->
+    <div id="profile" class="section hidden">
+
+<h2> Student Profile</h2>
+
+<div class="profile-card">
+
+<img src="./assesst/profile.webp">
+
+<h3>Ajith Kumar</h3>
+
+<p> ajith@gmail.com</p>
+<p> Student ID : ST2026001</p>
+<p> Course : Full Stack Development</p>
+<p> Batch : 2026</p>
+
+<button>Edit Profile</button>
+
+</div>
+
+</div>
+
+    </div>
+
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>
