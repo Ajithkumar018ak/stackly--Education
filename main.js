@@ -393,3 +393,41 @@ document.querySelectorAll(".sidebar a").forEach(link=>{
         }
     });
 });
+
+// STATS + PROCESS + BENEFITS TEXT ANIMATION
+
+const texts = document.querySelectorAll(
+`
+.stat-box h2,
+.stat-box p,
+.process h2,
+.step h3,
+.step p,
+.benefits h2,
+.benefit-list div
+`
+);
+
+texts.forEach(el => {
+    el.classList.add("animate-text","text-in");
+});
+
+setInterval(() => {
+
+    texts.forEach(el => {
+
+        el.classList.remove("text-in");
+        el.classList.add("text-out");
+
+        setTimeout(() => {
+            el.classList.remove("text-out");
+            el.classList.add("text-in");
+        }, 800);
+
+    });
+
+}, 3000);
+
+
+
+
