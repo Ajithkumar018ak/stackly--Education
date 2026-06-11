@@ -263,6 +263,34 @@
 
 <script>
 
+    function goDashboard() {
+
+    // எல்லா sections-யும் hide
+    document.querySelectorAll(".section").forEach(sec => {
+        sec.style.display = "none";
+    });
+
+    // Home section show
+    document.getElementById("home").style.display = "block";
+
+    // Active menu remove
+    document.querySelectorAll(".sidebar a").forEach(link => {
+        link.classList.remove("active");
+    });
+
+    // Dashboard menu active
+    const dashboardLink = document.querySelector(".sidebar a");
+    if (dashboardLink) {
+        dashboardLink.classList.add("active");
+    }
+
+    // Mobile sidebar close
+    const sidebar = document.querySelector(".sidebar");
+    if (sidebar) {
+        sidebar.classList.remove("active");
+    }
+}
+
     function showSection(id, e) {
 
     // hide all sections

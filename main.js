@@ -428,10 +428,3 @@ setInterval(() => {
 
 }, 3000);
 
-function goDashboard() {
-    window.location.href = "student-dashboard.html";
-}
-
-function goDashboard() {
-    window.location.href = "admin-dashboard.html";
-}
